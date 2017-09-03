@@ -47,15 +47,17 @@ public class JDBConnection {
 		     }
 		}
 	}
-public List<Race> selectAll() {
 	
+	
+public ArrayList<String> selectAll() {
+		
 		ResultSet rs = null;
-		List<Race> result = new ArrayList<Race>();
+		ArrayList<String> result = new ArrayList<String>();
 		try {
 			Statement stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM RACES ORDER BY NAME ASC");
+			rs = stmt.executeQuery("SELECT * FROM RACES ORDER BY NAME DESC");
 			while(rs.next()) {
-				result.add(new Race(rs.getString("name"), rs.getInt("Distance")));
+				result.add(rs.getString("name") + ";" + rs.getInt("distance"));
 			}
 			stmt.close();
 		}
@@ -65,7 +67,6 @@ public List<Race> selectAll() {
 		
 		return result;
 	}
-
 	
 	
 

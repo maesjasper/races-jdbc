@@ -9,7 +9,7 @@ public class RacesServer {
 		
 		try {		
 		    Component component = new Component();
-		    component.getServers().add(Protocol.HTTP, 8089);	    
+		    component.getServers().add(Protocol.HTTP, 8086);	    
 		    component.getDefaultHost().attach("/races", new RacesApplication());
 			component.start();
 		} 
