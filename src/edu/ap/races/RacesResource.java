@@ -18,10 +18,10 @@ public class RacesResource extends ServerResource{
 	@Get
 	public String getAllRaces() {
 		
-		//Philippe manier
+		
 		JDBConnection c = JDBConnection.getJDBConnection();
 		c.openConnection("races", "root", "root");
-		ArrayList<String> resultArray = c.selectAll();
+		List<Race> resultArray = c.selectAll();
 		c.closeConnection();
 		
 		JSONObject json = new JSONObject();
@@ -29,19 +29,19 @@ public class RacesResource extends ServerResource{
 		json.put("length", resultArray.size());
 		JSONArray jsonArray = new JSONArray();
 		
-		int i = 0;
-		for(String s : resultArray) {
+		
+		for(Race r : resultArray) {
 			JSONObject obj = new JSONObject();
-			obj.put("" + i, s);
+			obj.put("distance", r.getDistance());
+			obj.put("name", r.getName());
 			jsonArray.put(obj);
-			i++;
 		}
 		
 		json.put("result", jsonArray);
 
 		return json.toString();
 		
-		//Jasper Manier
+		
 		/*
 		String races = "";
 		System.out.println("test");

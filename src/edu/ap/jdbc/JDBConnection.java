@@ -49,15 +49,15 @@ public class JDBConnection {
 	}
 	
 	
-public ArrayList<String> selectAll() {
+public List<Race> selectAll() {
 		
 		ResultSet rs = null;
-		ArrayList<String> result = new ArrayList<String>();
+		List<Race> result = new ArrayList<Race>();
 		try {
 			Statement stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM RACES ORDER BY NAME DESC");
 			while(rs.next()) {
-				result.add(rs.getString("name") + ";" + rs.getInt("distance"));
+				result.add(new Race(rs.getString("name"), rs.getInt("distance")));
 			}
 			stmt.close();
 		}
