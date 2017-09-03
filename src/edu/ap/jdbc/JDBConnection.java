@@ -68,6 +68,18 @@ public ArrayList<String> selectAll() {
 		return result;
 	}
 	
+public void executeInsert(String table, String name, int distance) {
+	
+	try {
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate("INSERT INTO " + table + "(name, distance) VALUES('" + name + "'," + distance + ")");
+		//stmt.executeUpdate("INSERT INTO " + table + " VALUES('" + name + "'," + distance + ")");
+		stmt.close();
+	}
+	catch(SQLException ex) {
+		System.out.println("Error: " + ex);
+	}
+}
 	
 
 }

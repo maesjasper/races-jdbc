@@ -7,6 +7,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.restlet.resource.Get;
+import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
 import edu.ap.jdbc.*;
@@ -60,5 +61,21 @@ public class RacesResource extends ServerResource{
 		System.out.println(races);
 		return races;
 		*/
+	}
+	
+	@Post("txt")
+	public void newStudent(String json) {
+		
+		JSONObject newRace = new JSONObject(json);
+		System.out.println(newRace.toString());
+		String name = newRace.getString("name");
+		int distance = newRace.getInt("distance");
+		
+		System.out.println(name+ " " + distance);		
+		
+		JDBConnection c = JDBConnection.getJDBConnection();
+		c.openConnection("races", "root", "root");
+		c.executeInsert("races", name, distance);
+		c.closeConnection();
 	}
 }
